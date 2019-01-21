@@ -56,17 +56,17 @@ form {
   border-radius: 0.45em;
   border-width: medium;
   font-weight: bold;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .btn:hover {
   background: #6f86d6;
   border-color: #6f86d6;
-  box-shadow: 0 12px 22px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.35);
 }
 
 .btn:focus {
-  font-size: 1em;
+  font-size: 1.4em;
   color: #f4f4f4;
   background: #6f86d6;
   border-color: #6f86d6;

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<!--- Copyright Snead's BBQ 2019 --->
+<!--- Copyright Huskerthon 2019 --->
 <html>
 	<head>
 		<title>Huskerthon Check-In</title>
@@ -15,19 +15,20 @@
       <img src="./img/logo.png" width="100px"/>
       <h1>Welcome to Huskerthon</h1>
     </header>
-    <form>
+    <form id="form">
       <div class="form-row">
         <div class="col">
-          <input type="text" class="form-control-lg" placeholder="First name" tabindex=1 />
+          <input name="firstName" type="text" class="form-control-lg" placeholder="First name" tabindex=1 />
         </div>
         <div class="col">
-          <input type="text" class="form-control-lg" placeholder="Last name" tabindex=2 />
+          <input name="lastName" type="text" class="form-control-lg" placeholder="Last name" tabindex=2 />
         </div>
       </div>
       <div class="form-submit">
-        <button type="submit" class="btn btn-primary">CHECK IN</button>
+        <button type="submit" class="btn btn-primary" id="submit">CHECK IN</button>
       </div>
     </form>
+		<p id="results__display" />
 		<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 		<script src="js/index.js"></script>
 	</body>
