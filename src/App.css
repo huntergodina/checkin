@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.header {
+  font-size: calc(6px + 2vmin);
+  color: black;
+}
+
+.search {
+
+}
+
+.App-link {
+  color: #61dafb;
+}
