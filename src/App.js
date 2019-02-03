@@ -9,8 +9,11 @@ class App extends Component {
     super(props)
     this.state = {
       sheetLoaded: false,
-      searchTerm: '',
     }
+  }
+
+  reRender = () => {
+    window.location.reload();
   }
 
   render() {
@@ -18,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <h1>Welcome to UNL Dance Marathon!</h1>
+          <h1>Huskerthon 2019!</h1>
         </header>
         <div className="search">
           <ReactGoogleSheets
@@ -30,15 +33,14 @@ class App extends Component {
             {this.state.sheetLoaded ?
               <div>
                 {/* Search Data */}
-                <Search data={this.props.getSheetsData('Checkin Data')} props={this.props} />
-                {/* Update Data */}
-                <button onClick={() => this.checkIn(this.props, 16)}>Check In</button>
+                <Search data={this.props.getSheetsData('Checkin Data')} props={this.props} callback={() => this.reRender()}/>
               </div>
               :
               'loading...'
             }
           </ReactGoogleSheets>
         </div>
+
       </div>
     );
   }

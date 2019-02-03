@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchInput, {createFilter} from 'react-search-input';
 
-const KEYS_TO_FILTERS = ['first', 'last', 'team', 'shirt'];
+const KEYS_TO_FILTERS = ['first', 'last', 'team'];
 
 class Search extends Component {
   constructor(props) {
@@ -16,10 +16,10 @@ class Search extends Component {
   checkIn = (dancer, props, row) => {
     props.props.updateCell(
       'Sheet1', // sheetName
-      'F', // column
+      'E', // column
       row, // row
       'X', // value
-      null, // successCallback
+      props.callback, // successCallback
       (error) => {
         console.log('error', error)
       } // errorCallback
@@ -30,7 +30,6 @@ class Search extends Component {
   renderDancer = (dancer, props) => {
     return (
       <div style={styles.dancer} key={dancer.id}>
-        <div style={styles.shirt} key={dancer.shirt}>{dancer.shirt}</div>
         <div style={styles.name} key={`${dancer.first}${dancer.last}`}>{dancer.first} {dancer.last}</div>
         <div style={styles.team} key={dancer.team}>{dancer.team}</div>
         <button onClick={() => this.checkIn(dancer, props, parseInt(dancer.id) + 1)}>Check In</button>
@@ -77,11 +76,6 @@ const styles = {
   },
   team: {
     paddingLeft: 10,
-    fontSize: 'calc(8px + 1vmin)',
-  },
-  shirt: {
-    float: 'left',
-    paddingRight: 10,
     fontSize: 'calc(8px + 1vmin)',
   },
 }
