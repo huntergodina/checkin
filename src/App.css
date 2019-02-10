@@ -1,24 +1,55 @@
-.App {
+.header {
   text-align: center;
-  background-image: linear-gradient(to right, #ee0979, #ff6a00);
+  padding-top: 60px;
+  padding-bottom: 20px;
 }
 
 h1 {
-  text-align: center;
+  color: #F94646;
+  font-size: calc(6vmin);
+  font-family: 'Bangers', cursive;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+h2 {
+  color: #272727;
+  font-size: calc(2vmin);
+  font-weight: bold;
+}
+
+h3 {
+  font-size: calc(2vmin);
   font-weight: normal;
-  color: #f4f4f4;
-  font-size: calc(6px + 6vmin);
-  font-family: 'Luckiest Guy', cursive;
-  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.7);
-  @include skew(0, -6.7deg, false);
-  @include transition-property(font-size);
-  @include transition-duration(0.5s);
+}
+
+button {
+  background-color: #f4f4f4;
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  color: #272727;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: calc(2px + 1vmin);
+  -webkit-transition-duration: 0.3s; /* Safari */
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  background-color: #ffffff;
+  text-decoration: underline;
+  color: #272727;
 }
 
 .search {
-
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.footer {
+  text-align: center;
+  padding-top: 100px;
 }

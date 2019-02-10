@@ -19,9 +19,11 @@ class App extends Component {
   render() {
 
     return (
-      <div className="App">
+      <div>
         <header className="header">
-          <h1>Huskerthon 2019!</h1>
+          <h1>Huskerthon</h1>
+          <h2>Welcome Dancers!</h2>
+          <p>Search for your name or team and check in.</p>
         </header>
         <div className="search">
           <ReactGoogleSheets
@@ -40,7 +42,9 @@ class App extends Component {
             }
           </ReactGoogleSheets>
         </div>
-
+        <footer className="footer">
+          <p>© UNL Dance Marathon</p>
+        </footer>
       </div>
     );
   }
