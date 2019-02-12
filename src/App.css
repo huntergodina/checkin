@@ -23,6 +23,11 @@ h3 {
   font-weight: normal;
 }
 
+p {
+  font-size: calc(2vmin);
+  font-weight: normal;
+}
+
 button {
   background-color: #f4f4f4;
   font-family: 'Signika Negative', sans-serif;

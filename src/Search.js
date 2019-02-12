@@ -35,7 +35,7 @@ class Search extends Component {
     if (!!dancer) {
       props.props.updateCell(
         'Sheet1', // sheetName
-        'E', // column
+        'L', // column
         row, // row
         'X', // value
         props.callback, // successCallback
@@ -47,12 +47,39 @@ class Search extends Component {
     }
   }
 
+  getShirtInfo = (dancer) => {
+    let size = null;
+    let color = !!dancer.shirtColor ? dancer.shirtColor : null;
+    if (!!dancer.s) {
+      size = 'S';
+    } else if (!!dancer.m) {
+      size = 'M';
+    } else if (!!dancer.l) {
+      size = 'L';
+    } else if (!!dancer.xl) {
+      size = 'XL';
+    } else if (!!dancer.xxl) {
+      size = '2XL';
+    } else if (!!dancer.xxxl) {
+      size = '3XL';
+    }
+    return({size, color})
+  }
+
   renderDancer = (dancer, props) => {
     return (
       <div style={styles.dancer} key={dancer.id}>
         <div style={styles.info}>
-          <div style={styles.name} key={`${dancer.first}${dancer.last}`}>{dancer.first} {dancer.last}</div>
-          <div style={styles.team} key={dancer.team}>{dancer.team}</div>
+          <div style={styles.infoRow}>
+            <div style={styles.name} key={`${dancer.first}${dancer.last}`}>{dancer.first} {dancer.last}</div>
+            <div style={styles.team} key={dancer.team}><strong>{dancer.team}</strong></div>
+          </div>
+          <div style={styles.infoRow}>
+            <div style={styles.shirtInfo}>Shirt Size:</div>
+            <div style={styles.shirtInfo} key={dancer.shirt.size}><strong>{dancer.shirt.size}</strong></div>
+            <div style={styles.shirtInfo}>Shirt Color:</div>
+            <div style={styles.shirtInfo} key={dancer.shirt.color}><strong>{dancer.shirt.color}</strong></div>
+          </div>
         </div>
         <div style={styles.button}><button onClick={() => this.onOpenModal(dancer)}>CHECK IN</button></div>
       </div>
@@ -69,6 +96,8 @@ class Search extends Component {
         <div style={styles.dancers}>
           {filteredDancers.map((dancer, id) => {
             if (!dancer.present) {
+              const shirt = this.getShirtInfo(dancer);
+              dancer.shirt = shirt;
               return (this.renderDancer(dancer, this.props));
             }
             return null;
@@ -78,8 +107,9 @@ class Search extends Component {
           <Modal open={this.state.open} onClose={this.onCloseModal} center>
             <div style={styles.modalContent}>
               <h2>Are you sure you want to check in?</h2>
-              <h3>{!!this.state.dancer ? this.state.dancer.first + ' ' + this.state.dancer.last  + ', ' + this.state.dancer.team: null}</h3>
-              <button onClick={() => this.checkIn(this.state.dancer, this.props, parseInt(this.state.dancer.id) + 1)}>YES, CHECK IN</button>
+              <h3>{!!this.state.dancer ? this.state.dancer.first + ' ' + this.state.dancer.last  + ', ' + this.state.dancer.team : null}</h3>
+              <p>{!!this.state.dancer && !!this.state.dancer.shirt ? this.state.dancer.shirt.size + ', ' + this.state.dancer.shirt.color: null}</p>
+              <button onClick={() => this.checkIn(this.state.dancer, this.props, parseInt(this.state.dancer.id) + 1)}>CHECK IN!</button>
             </div>
           </Modal>
         </div>
@@ -122,8 +152,19 @@ const styles = {
   },
   info: {
     display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  infoRow: {
+    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  shirtInfo: {
+    padding: 15,
+    paddingRight: 1,
+    paddingTop: 0,
+    fontSize: 'calc(4px + 1vmin)',
   },
   name: {
     padding: 15,
