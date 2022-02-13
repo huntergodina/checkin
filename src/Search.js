@@ -215,11 +215,11 @@ class Search extends Component {
                 <div style={styles.waiver}>
                   <h2>Please accept these terms to proceed</h2>
                   <p>
-                    Releasor realizes that participation in the HuskerThon 2020
+                    Releasor realizes that participation in the HuskerThon 2022
                     involves certain risks and danger and is a vigorous activity
                     involving severe respiratory and cardiovascular stress.
                     Releasor has hereby been made aware that participation in
-                    HuskerThon 2020 has the following non-exclusive list of
+                    HuskerThon 2022 has the following non-exclusive list of
                     certain risks which I accept: death; head, eye, neck, and
                     spinal injury resulting in complete or partial paralysis;
                     brain damage; heart attack; blisters; cuts; lacerations;
@@ -230,14 +230,14 @@ class Search extends Component {
                     conditions.
                   </p>
                   <p>
-                    In consideration of participation in HuskerThon 2020
+                    In consideration of participation in HuskerThon 2022
                     Releasor hereby RELEASES and covenants not-to-sue the
                     UNIVERSITY for any and all present and future claims
                     resulting from ordinary negligence on the part of the
                     UNIVERSITY for property damage, personal injury, or wrongful
                     death arising as a result of my engaging in, using
                     University facilities and equipment, or receiving
-                    instruction for HuskerThon 2020 or activities thereto,
+                    instruction for HuskerThon 2022 or activities thereto,
                     wherever, whenever, or however the same may occur. Releasor
                     hereby voluntarily waives any and all claims or actions
                     resulting from ordinary negligence, both present and future,
