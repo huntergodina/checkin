@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^3.2.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-google-sheets": "^0.4.0",

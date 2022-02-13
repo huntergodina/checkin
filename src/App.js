@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div>
         <header className="header">
@@ -31,11 +30,12 @@ class App extends Component {
             apiKey={credentials.api_key}
             spreadsheetId={credentials.spreadsheet_id}
             afterLoading={() => this.setState({sheetLoaded: true})}
+            sheetId={credentials.sheet_id}
           >
             {this.state.sheetLoaded ?
               <div>
                 {/* Search Data */}
-                <Search data={this.props.getSheetsData('Checkin Data')} props={this.props} callback={() => this.reRender()}/>
+                <Search data={this.props.getSheetsData('Dancer List')} props={this.props} callback={() => this.reRender()}/>
               </div>
               :
               'loading...'

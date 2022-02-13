@@ -58,20 +58,27 @@ class Search extends Component {
   };
 
   checkIn = (dancer, props, row) => {
+    if(!!dancer && dancer.crimes.includes(true)){
+      alert("You are not checked in. Please speak to a staff member.")
+    }
     if (!!dancer) {
+      // Checked In "X"
+      if(!dancer.crimes.includes(true)){
+        props.props.updateCell(
+          "Dancer Info", // sheetName
+          "H", // column
+          row, // row
+          "X", // value
+          props.callback, // successCallback
+          error => {
+            console.log("error", error);
+          } // errorCallback
+        );
+      }
+      // NUID
       props.props.updateCell(
-        "Sheet1", // sheetName
-        "L", // column
-        row, // row
-        "X", // value
-        props.callback, // successCallback
-        error => {
-          console.log("error", error);
-        } // errorCallback
-      );
-      props.props.updateCell(
-        "Sheet1", // sheetName
-        "M", // column
+        "Dancer Info", // sheetName
+        "G", // column
         row, // row
         dancer.NUID, // value
         props.callback, // successCallback
@@ -79,26 +86,66 @@ class Search extends Component {
           console.log("error", error);
         } // errorCallback
       );
+      // Waivers
+      if(dancer.waivers[0]){
+        props.props.updateCell(
+          "Dancer Info", // sheetName
+          "I", // column
+          row, // row
+          "X", // value
+          props.callback, // successCallback
+          error => {
+            console.log("error", error);
+          } // errorCallback
+        );
+      }
+      if(dancer.waivers[1]){
+        props.props.updateCell(
+          "Dancer Info", // sheetName
+          "J", // column
+          row, // row
+          "X", // value
+          props.callback, // successCallback
+          error => {
+            console.log("error", error);
+          } // errorCallback
+        );
+      }
+      if(dancer.waivers[2]){
+        props.props.updateCell(
+          "Dancer Info", // sheetName
+          "K", // column
+          row, // row
+          "X", // value
+          props.callback, // successCallback
+          error => {
+            console.log("error", error);
+          } // errorCallback
+        );
+      }
+      // Crimes
+      var crime_cols = ["L", "M", "N", "O", "P", "Q", "R", "S"]
+      for(var i = 0; i < dancer.crimes.length; i++){
+        if(dancer.crimes[i]){
+          props.props.updateCell(
+            "Dancer Info", // sheetName
+            crime_cols[i], // column
+            row, // row
+            "X", // value
+            props.callback, // successCallback
+            error => {
+              console.log("error", error);
+            } // errorCallback
+          );
+        }
+      }
       this.setState({ searchTerm: "" });
     }
   };
 
   getShirtInfo = dancer => {
-    let size = null;
+    let size = !!dancer.shirtSize ? dancer.shirtSize : null;
     let color = !!dancer.shirtColor ? dancer.shirtColor : null;
-    if (!!dancer.s) {
-      size = "S";
-    } else if (!!dancer.m) {
-      size = "M";
-    } else if (!!dancer.l) {
-      size = "L";
-    } else if (!!dancer.xl) {
-      size = "XL";
-    } else if (!!dancer.xxl) {
-      size = "2XL";
-    } else if (!!dancer.xxxl) {
-      size = "3XL";
-    }
     return { size, color };
   };
 
@@ -203,6 +250,48 @@ class Search extends Component {
                   </div>
                 </div>
                 <div style={styles.waiver}>
+                  <h2>Please accept the Child Abuse and Neglect Including Sexual Assault Reporting Requirements</h2>
+                  <p>
+                  Nebraska statutes require any person (including you) who 
+                  becomes aware of any child abuse or neglect, including sexual 
+                  assault, to report such abuse, neglect, or assault to law 
+                  enforcement or the Department of Health and Human Services. 
+                  Law enforcement is likewise required to notify DHHS of any such 
+                  incidents reported to them. Activity Workers are required to 
+                  notify the University Police Department at 402-472-2222 
+                  immediately when these situations are suspected.
+                  </p>
+                  <p>
+                  This means that if you suspect any child abuse or neglect, 
+                  including sexual assault: 1) you must report it, 2) you should 
+                  give as much information about the circumstances as possible, 
+                  3) you are immune from any civil or criminal liability if you 
+                  have reported the information in good faith, and 4) if you know 
+                  of child abuse, neglect, or sexual assault but are not 
+                  reporting it, you are breaking the law. 
+                  </p>
+                  <p>
+                  Reference: Nebraska Statutes 28-710; 28-711; 28-716; 28-717: 
+                  </p>
+                  <div style={styles.textCenter}>
+                    <input type="checkbox" name="ca-waiver" required></input>
+                    <label>
+                      I understand & agree to follow the Child Abuse, Neglect, & Sexual Assault Reporting Requirements Above
+                    </label>
+                  </div>
+                </div>
+                <div style={styles.waiver}>
+                  <div style={styles.textCenter}>
+                    <input type="checkbox" name="ysg-waiver" required></input>
+                    <label>
+                    I have read, understand, and agree to adhere abide by the policies and 
+                    requirements stated in the  
+                    <a href={"https://drive.google.com/file/d/19eotJC0dj97569lBFOEAOvFPS0d1tE3u/view?usp=sharing"}> Youth Safety Guidelines </a>  
+                    (available in person).
+                    </label>
+                  </div>
+                </div>
+                <div style={styles.waiver}>
                   <h2>
                     <strong>
                       Have you ever been convicted of any of the following
@@ -211,34 +300,55 @@ class Search extends Component {
                   </h2>
                   <ul>
                     <li>
-                      Felony assault, including domestic violence related
-                      incidents
+                      <input type="checkbox" name="crime1" value="1"></input>
+                      <label>
+                      Felony assault, including domestic violence related incidents
+                      </label>
                     </li>
                     <li>
-                      Child abuse, molestation or other crime involving
-                      endangerment of a minor
+                      <input type="checkbox" name="crime2" value="1"></input>
+                      <label>
+                        Child abuse, molestation or other crime involving
+                        endangerment of a minor
+                      </label>
                     </li>
-                    <li>Murder</li>
-                    <li>Kidnapping</li>
-                    <li>Misdemeanor assault</li>
-                    <li>Drug distribution activity</li>
-                    <li>Felony drug possession, and any other felony</li>
-                    <li>Crime involving moral turpitude</li>
+                    <li>
+                      <input type="checkbox" name="crime3" value="1"></input>
+                      <label>
+                      Murder
+                      </label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="crime4" value="1"></input>
+                      <label>
+                      Kidnapping
+                      </label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="crime5" value="1"></input>
+                      <label>
+                      Misdemeanor assault
+                      </label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="crime6" value="1"></input>
+                      <label>
+                      Drug distribution activity
+                      </label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="crime7" value="1"></input>
+                      <label>
+                      Felony drug possession, and any other felony
+                      </label>
+                    </li>
+                    <li>
+                      <input type="checkbox" name="crime8" value="1"></input>
+                      <label>
+                      Crime involving moral turpitude
+                      </label>
+                    </li>
                   </ul>
-                  <div style={styles.textCenter}>
-                    <input type="radio" name="crime" value="1" required></input>
-                    <label>
-                      <strong>YES</strong>, I <strong>have</strong> committed
-                      one of the above crimes
-                    </label>
-                    <br></br>
-                    <br></br>
-                    <input type="radio" name="crime" value="0" required></input>
-                    <label>
-                      <strong>NO</strong>, I <strong>have not</strong> committed
-                      one of the above crimes
-                    </label>
-                  </div>
                 </div>
                 <div style={styles.waiver}>
                   <div style={styles.textCenter}>
@@ -289,19 +399,30 @@ class Search extends Component {
 
   checkForm = form => {
     form.preventDefault();
-    const noCrime = document.getElementsByName("crime")[1].checked;
+    console.log(document.getElementsByName("crime2"));
+    const crimes = [
+      document.getElementsByName("crime1")[0].checked,
+      document.getElementsByName("crime2")[0].checked,
+      document.getElementsByName("crime3")[0].checked,
+      document.getElementsByName("crime4")[0].checked,
+      document.getElementsByName("crime5")[0].checked,
+      document.getElementsByName("crime6")[0].checked,
+      document.getElementsByName("crime7")[0].checked,
+      document.getElementsByName("crime8")[0].checked
+    ];
+    const waivers = [
+      document.getElementsByName("waiver")[0].checked,
+      document.getElementsByName("ca-waiver")[0].checked,
+      document.getElementsByName("ysg-waiver")[0].checked
+    ];
     const id = document.getElementById("NUID").value;
     const dancer = this.state.dancer;
-    if (noCrime) {
       this.setState({
         open: true
       });
-      dancer.NUID = id;
-    } else {
-      alert(
-        "Please talk to a staff member... You have asserted that you have committed a crime."
-      );
-    }
+    dancer.NUID = id;
+    dancer.crimes = crimes;
+    dancer.waivers = waivers;
   };
 
   searchUpdated(term) {
