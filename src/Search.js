@@ -353,7 +353,7 @@ class Search extends Component {
                 <div style={styles.waiver}>
                   <div style={styles.textCenter}>
                     <label><strong>Please enter your NUID: </strong></label>
-                    <input type="text" id="NUID" required></input>
+                    <input type="text" id="NUID" minLength={8} maxLength={8} required></input>
                     <br></br>
                     <br></br>
                     <input type="submit"></input>
