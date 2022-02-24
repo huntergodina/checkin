@@ -61,6 +61,9 @@ class Search extends Component {
     if(!!dancer && dancer.crimes.includes(true)){
       alert("You are not checked in. Please speak to a staff member.")
     }
+    if(dancer.fb){
+      alert("By setting up a Facebook fundraiser, you're eligible for a reward. Please ask a staff member for your Agave discount.")
+    }
     if (!!dancer) {
       // Checked In "X"
       if(!dancer.crimes.includes(true)){
@@ -359,6 +362,12 @@ class Search extends Component {
                     <input type="submit"></input>
                   </div>
                 </div>
+                <div style={styles.textCenter}>
+                    <input type="checkbox" name="fb-fundraiser"></input>
+                    <label>
+                      I have already opened a Facebook Fundraiser
+                    </label>
+                  </div>
               </form>
             </div>
           </Modal>
@@ -386,7 +395,7 @@ class Search extends Component {
                   this.state.dancer,
                   this.props,
                   parseInt(this.state.dancer.id) + 1
-                )
+                ) 
               }
             >
               CHECK IN!
@@ -415,6 +424,7 @@ class Search extends Component {
       document.getElementsByName("ca-waiver")[0].checked,
       document.getElementsByName("ysg-waiver")[0].checked
     ];
+    const fbFundraiser = document.getElementsByName("fb-fundraiser")[0].checked;
     const id = document.getElementById("NUID").value;
     const dancer = this.state.dancer;
       this.setState({
@@ -423,6 +433,7 @@ class Search extends Component {
     dancer.NUID = id;
     dancer.crimes = crimes;
     dancer.waivers = waivers;
+    dancer.fb = fbFundraiser;
   };
 
   searchUpdated(term) {
