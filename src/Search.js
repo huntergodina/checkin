@@ -142,6 +142,18 @@ class Search extends Component {
           );
         }
       }
+      if(dancer.fb){
+        props.props.updateCell(
+          "Dancer Info", // sheetName
+          "T", // column
+          row, // row
+          "X", // value
+          props.callback, // successCallback
+          error => {
+            console.log("error", error);
+          } // errorCallback
+        );
+      }
       this.setState({ searchTerm: "" });
     }
   };
